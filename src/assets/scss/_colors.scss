@@ -1,0 +1,20 @@
+$colors: (
+  primaryBackground: #f4f1de,
+  accentBackground: #3d405b,
+  primaryColor: #e07a5f,
+  accentColor: #81b29a,
+  textDark: #222,
+  textLight: #eeeded,
+);
+
+@function getColor($color) {
+  @return map-get($map: $colors, $key: $color);
+}
+
+@function darkenColor($color, $amount) {
+  @return darken($color: $color, $amount: $amount);
+}
+
+@function lightenColor($color, $amount) {
+  @return lighten($color: $color, $amount: $amount);
+}
