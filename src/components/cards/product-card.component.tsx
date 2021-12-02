@@ -1,13 +1,16 @@
-import React from "react";
-import { IProduct } from "../../models/product";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { IProduct } from '../../models/product'
+import { Link } from 'react-router-dom'
 
-const ProductCardComponent: React.FC<Partial<IProduct>> = ({
+export interface Props
+  extends Pick<IProduct, 'img' | 'product_id' | 'price' | 'name' | 'shortDescription'> {}
+
+const ProductCardComponent: React.FC<Props> = ({
   img,
   product_id,
   price,
   name,
-  shortDescription,
+  shortDescription
 }) => {
   return (
     <article className="product-card">
@@ -17,11 +20,7 @@ const ProductCardComponent: React.FC<Partial<IProduct>> = ({
       <div className="product-card__content" data-test="content-section">
         <h2 className="heading">{name}</h2>
         <p>{shortDescription}</p>
-        <Link
-          to={`/products/${product_id}`}
-          className="product-card__cta"
-          data-test="product-link"
-        >
+        <Link to={`/products/${product_id}`} className="product-card__cta" data-test="product-link">
           SHOW ME
         </Link>
       </div>
@@ -32,7 +31,7 @@ const ProductCardComponent: React.FC<Partial<IProduct>> = ({
         <h4>{price}</h4>
       </div>
     </article>
-  );
-};
+  )
+}
 
-export default ProductCardComponent;
+export default ProductCardComponent
