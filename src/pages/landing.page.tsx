@@ -9,15 +9,19 @@ const LandingPage: React.FC = () => {
   useEffect(() => {
     const init = async () => {
       const api = new Api<ProductResponse>()
-      const { data } = await api.getRequest(ProductsUrls.GET_ALL_PRODUCTS)
-      setProducts(data.data)
+      try {
+        const {data}  = await api.getRequest(ProductsUrls.GET_ALL_PRODUCTS)
+        setProducts(data.data)
+      } catch (error) {
+      }
+    
     }
     init()
   }, [])
 
   return (
     <section className="products-section">
-      {products.map(product => (
+      {products.length && products.map(product => (
         <ProductCardComponent key={product.product_id} {...product} />
       ))}
     </section>

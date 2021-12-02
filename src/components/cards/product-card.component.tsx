@@ -13,7 +13,7 @@ const ProductCardComponent: React.FC<Props> = ({
   shortDescription
 }) => {
   return (
-    <article className="product-card">
+    <article className="product-card" data-test="product-card">
       <div className="product-card__header" data-test="header-section">
         <i className="uil uil-shopping-cart"></i>
       </div>
