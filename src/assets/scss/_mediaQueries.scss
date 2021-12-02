@@ -14,7 +14,7 @@ $desktop-width: 75em;
   }
 }
 
-@mixin laptop {
+@mixin desktop {
   @media (min-width: #{$tablet-desktop}) {
     @content;
   }
