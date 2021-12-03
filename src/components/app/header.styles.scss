@@ -1,0 +1,27 @@
+@import '../../assets/scss';
+
+.app-header {
+  min-height: 60vh;
+  display: grid;
+  grid-template-rows: min-content auto;
+  background-color: getColor('accentBackground');
+  color: getColor('textLight');
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    padding: 3.2rem;
+  }
+
+  &__hero {
+    padding: 0 3.2rem;
+
+    display: flex;
+    align-items: center;
+
+    h1 {
+      max-width: 14ch;
+      line-height: 1.5;
+    }
+  }
+}

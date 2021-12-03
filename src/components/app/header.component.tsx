@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import CartModalComponent, { Props as ICartModal } from '../modals/cart-modal.component';
 import UserModalComponent, { Props as IUserModal } from '../modals/user-modal.component';
 import { Modal } from '../modals/modals.types';
+import { ReactComponent as ExploreImg } from '../../assets/images/explore.svg';
+
+import './header.styles.scss';
 
 const HeaderComponent: React.FC = () => {
   const [userModalVisibility, setUserModalVisibility] = useState<boolean>(false);
@@ -34,8 +37,23 @@ const HeaderComponent: React.FC = () => {
   return (
     <>
       <header className="app-header">
-        <i className="uil uil-shopping-cart" data-test="cart-icon" onClick={() => toggleModal(Modal.CART_MODAL)}></i>
-        <i className="uil uil-user" data-test="user-icon" onClick={() => toggleModal(Modal.USER_MODAL)}></i>
+        <div className="app-header__top">
+          <h2 className="heading">T&amp;J AB</h2>
+          <nav className="app-header__nav">
+            <i
+              className="uil uil-shopping-cart"
+              data-test="cart-icon"
+              onClick={() => toggleModal(Modal.CART_MODAL)}
+            ></i>
+            <i className="uil uil-user" data-test="user-icon" onClick={() => toggleModal(Modal.USER_MODAL)}></i>
+          </nav>
+        </div>
+        <div className="app-header__hero">
+          <h1 className="heading--large">
+            START EXPLORING <br /> YOUR NEW <br /> STUFF TODAY
+          </h1>
+          <ExploreImg />
+        </div>
       </header>
       <CartModalComponent {...CartModalState} />
       <UserModalComponent {...UserModalState} />

@@ -1,31 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import ProductCardComponent from '../components/cards/product-card.component'
-import { IProduct, ProductResponse, ProductsUrls } from '../models/product'
-import Api from '../api/rest.api'
+import React from 'react';
+import ProductCardComponent from '../components/cards/product-card.component';
+import { IProduct } from '../models/product';
 
-const LandingPage: React.FC = () => {
-  const [products, setProducts] = useState<IProduct[]>([])
-
-  useEffect(() => {
-    const init = async () => {
-      const api = new Api<ProductResponse>()
-      try {
-        const {data}  = await api.getRequest(ProductsUrls.GET_ALL_PRODUCTS)
-        setProducts(data.data)
-      } catch (error) {
-      }
-    
-    }
-    init()
-  }, [])
-
-  return (
-    <section className="products-section">
-      {products.length && products.map(product => (
-        <ProductCardComponent key={product.product_id} {...product} />
-      ))}
-    </section>
-  )
+interface Props {
+  products: IProduct[];
 }
 
-export default LandingPage
+const LandingPage: React.FC<Props> = ({ products }) => {
+  return (
+    <section className="products-section">
+      {products.length > 0 && products.map((product) => <ProductCardComponent key={product.product_id} {...product} />)}
+    </section>
+  );
+};
+
+export default LandingPage;
