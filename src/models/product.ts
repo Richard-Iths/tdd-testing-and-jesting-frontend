@@ -19,7 +19,7 @@ export const bootstrapData = (): IProduct[] => {
   return [
     {
       product_id: '1o3ifh04h9',
-      img: 'skjorta.png',
+      img: '/images/jeans.jpg',
       name: 'Trasig skjorta',
       price: 250,
       shortDescription: 'En fin skjorta',
@@ -27,7 +27,7 @@ export const bootstrapData = (): IProduct[] => {
     },
     {
       product_id: 'oivjrfi8h03',
-      img: 'jeansjacka.png',
+      img: '/images/jeans.jpg',
       name: 'Trasig jeansjacka',
       price: 500,
       shortDescription: 'En fin jeansjacka',

@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import CartModalComponent, { Props as ICartModal } from '../modals/cart-modal.component';
 import UserModalComponent, { Props as IUserModal } from '../modals/user-modal.component';
+import SearchBarComponent from '../search-bar/search-bar.component';
 import { Modal } from '../modals/modals.types';
 import { ReactComponent as ExploreImg } from '../../assets/images/explore.svg';
 
 import './header.styles.scss';
+import { IProduct } from '../../models/product';
 
-const HeaderComponent: React.FC = () => {
+interface Props {
+  products: IProduct[];
+}
+
+const HeaderComponent: React.FC<Props> = ({ products }) => {
   const [userModalVisibility, setUserModalVisibility] = useState<boolean>(false);
   const [cartModalVisibility, setCartModalVisibility] = useState<boolean>(false);
 
@@ -53,6 +59,7 @@ const HeaderComponent: React.FC = () => {
             START EXPLORING <br /> YOUR NEW <br /> STUFF TODAY
           </h1>
           <ExploreImg />
+          <SearchBarComponent products={products} />
         </div>
       </header>
       <CartModalComponent {...CartModalState} />

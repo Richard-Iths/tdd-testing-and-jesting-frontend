@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div className="app">
-      <HeaderComponent />
+      <HeaderComponent products={products} />
       <main>
         <Routes>
           <Route path="/" element={<LandingPage products={products} />} />
