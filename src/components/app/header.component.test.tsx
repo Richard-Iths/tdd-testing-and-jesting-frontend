@@ -21,6 +21,11 @@ describe('header.component.tsx', () => {
       const userModal = wrapper.find(UserModalComponent);
       expect(userModal.exists()).toBe(true);
     });
+    it("Should render a search bar component",() => {
+      const wrapper = shallow(<HeaderComponent />);
+      const searchBar = wrapper.find(SearchBarComponent);
+      expect(searchBar.exists()).toBe(true);
+    })
   });
   describe('White box tests', () => {
     it('Should toggle cart modal on cart icon click', () => {

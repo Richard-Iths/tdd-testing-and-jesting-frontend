@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { mount, ReactWrapper } from "enzyme";
+import { mount, ReactWrapper,shallow } from "enzyme";
 import { BrowserRouter } from "react-router-dom";
 import ProductCardComponent from "../components/cards/product-card.component";
 import LandingPage from "./landing.page";
@@ -32,113 +32,91 @@ describe("landing.page.tsx", () => {
     it("should render landing page", () => {
       render(
         <BrowserRouter>
-          <LandingPage />
+          <LandingPage products={fakeData} />
         </BrowserRouter>
       );
     });
     it("should render product-card component", async () => {
-      const response: Partial<AxiosResponse> = {
-        data: {
-          data: fakeData,
-        },
-      };
-
-      await act(async () => {
-        // axios.get = jest.fn().mockReturnValue(response);
-        mockedAxios.get.mockReturnValue(Promise.resolve(response));
-      });
-
-
-      let wrapper: ReactWrapper;
-
-      await act(async () => {
-        wrapper = mount(
-          <BrowserRouter>
-            <LandingPage />
-          </BrowserRouter>
+      const  wrapper = shallow(
+            <LandingPage products={fakeData}/>
         );
-      });
-
-      await act(async () => {
-        wrapper.update();
         const product = wrapper.find(ProductCardComponent).first();
         expect(product.exists()).toBe(true);
-      });
     });
   });
 
   describe("black box tests", () => {
-    it("should have called the rest api products endpoint via useEffect hook", async () => {
-      const response: Partial<AxiosResponse> = {
-        data: {
-          data: fakeData,
-        },
-      };
+    // it("should have called the rest api products endpoint via useEffect hook", async () => {
+    //   const response: Partial<AxiosResponse> = {
+    //     data: {
+    //       data: fakeData,
+    //     },
+    //   };
 
-      await act(async () => {
-        mockedAxios.get.mockReturnValue(Promise.resolve(response));
-      });
+    //   await act(async () => {
+    //     mockedAxios.get.mockReturnValue(Promise.resolve(response));
+    //   });
 
-      const effectSpy = jest.spyOn(React, "useEffect");
+    //   const effectSpy = jest.spyOn(React, "useEffect");
 
-      let wrapper: ReactWrapper;
+    //   let wrapper: ReactWrapper;
 
-      await act(async () => {
-        wrapper = mount(
-          <BrowserRouter>
-            <LandingPage />
-          </BrowserRouter>
-        );
-        expect(effectSpy).not.toHaveBeenCalled();
-        expect(mockedAxios.get).not.toHaveBeenCalled();
-      });
+    //   await act(async () => {
+    //     wrapper = mount(
+    //       <BrowserRouter>
+    //         <LandingPage />
+    //       </BrowserRouter>
+    //     );
+    //     expect(effectSpy).not.toHaveBeenCalled();
+    //     expect(mockedAxios.get).not.toHaveBeenCalled();
+    //   });
 
-      await act(async () => {
-        wrapper.update();
-        expect(mockedAxios.get).toHaveBeenCalledTimes(1);
-        expect(effectSpy).toHaveBeenCalledTimes(1);
-      });
+    //   await act(async () => {
+    //     wrapper.update();
+    //     expect(mockedAxios.get).toHaveBeenCalledTimes(1);
+    //     expect(effectSpy).toHaveBeenCalledTimes(1);
+    //   });
      
-    })
-    it("should contain rendered product card component, with props from rest api", async () => {
-      fakeData.push({
-        description: "amazing product2",
-        img: "sko2.gif",
-        name: "Trasiga skor2",
-        price: 1502,
-        product_id: "2",
-        shortDescription: "skor2",
-      })
-      const response: Partial<AxiosResponse> = {
-        data: {
-          data: fakeData,
-        },
-      };
+    // })
+    // it("should contain rendered product card component, with props from rest api", async () => {
+    //   fakeData.push({
+    //     description: "amazing product2",
+    //     img: "sko2.gif",
+    //     name: "Trasiga skor2",
+    //     price: 1502,
+    //     product_id: "2",
+    //     shortDescription: "skor2",
+    //   })
+    //   const response: Partial<AxiosResponse> = {
+    //     data: {
+    //       data: fakeData,
+    //     },
+    //   };
 
-      await act(async () => {
-        mockedAxios.get.mockReturnValue(Promise.resolve(response));
-      });
+    //   await act(async () => {
+    //     mockedAxios.get.mockReturnValue(Promise.resolve(response));
+    //   });
 
 
-      let wrapper: ReactWrapper;
+    //   let wrapper: ReactWrapper;
 
-      await act(async () => {
-        wrapper = mount(
-          <BrowserRouter>
-            <LandingPage />
-          </BrowserRouter>
-        );
-      });
+    //   await act(async () => {
+    //     wrapper = mount(
+    //       <BrowserRouter>
+    //         <LandingPage />
+    //       </BrowserRouter>
+    //     );
+    //   });
 
-      await act(async () => {
-        wrapper.update();
-        const products = wrapper.find(ProductCardComponent);
-        const [firstProduct,secondProduct] = fakeData;
-        expect(products.length).toBe(2);
-        expect(products.first().props()).toStrictEqual(firstProduct);
-        expect(products.at(1).props()).toStrictEqual(secondProduct);
-      });
-    })
+    //   await act(async () => {
+    //     wrapper.update();
+    //     const products = wrapper.find(ProductCardComponent);
+    //     const [firstProduct,secondProduct] = fakeData;
+    //     expect(products.length).toBe(2);
+    //     expect(products.first().props()).toStrictEqual(firstProduct);
+    //     expect(products.at(1).props()).toStrictEqual(secondProduct);
+    //   });
+    // })
   });
 
   describe("white box tests", () => {});

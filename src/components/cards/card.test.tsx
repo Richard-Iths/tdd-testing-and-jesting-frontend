@@ -21,17 +21,17 @@ describe("card.component.tsx", () => {
     });
   });
   describe("Black Box Tests", () => {
-    it("Should have a header section", () => {
+    it("Should have a header element", () => {
       const wrapper = shallow(<ProductCardComponent {...props}/>);
       const header = wrapper.find('[data-test="header-section"]');
       expect(header.exists()).toBe(true);
     });
-    it("Should have a content section", () => {
+    it("Should have a content element", () => {
       const wrapper = shallow(<ProductCardComponent {...props} />);
       const content = wrapper.find('[data-test="content-section"]');
       expect(content.exists()).toBe(true);
     });
-    it("Should have a footer section", () => {
+    it("Should have a footer element", () => {
       const wrapper = shallow(<ProductCardComponent {...props}/>);
       const footer = wrapper.find('[data-test="footer-section"]');
       expect(footer.exists()).toBe(true);
