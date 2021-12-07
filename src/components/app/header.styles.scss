@@ -7,11 +7,20 @@
   background-color: getColor('accentBackground');
   color: getColor('textLight');
 
+  @include mobile {
+    min-height: 100vh;
+  }
+
   &__top {
     display: flex;
     justify-content: space-around;
     align-items: center;
     padding: 3.2rem;
+
+    @include mobile {
+      justify-content: space-between;
+      padding: 1.6rem;
+    }
   }
 
   &__hero {
@@ -24,23 +33,51 @@
     h1 {
       max-width: 14ch;
       line-height: 1.5;
-      color: lightenColor( getColor("primaryColor"),15)
+      color: lightenColor(getColor('primaryColor'), 15);
+    }
+
+    @include tablet {
+      h1 {
+        display: none;
+      }
+    }
+    @include mobile {
+      flex-direction: column-reverse;
+      text-align: center;
+      padding: 1.6rem;
+      h1 {
+        font-size: 2em;
+      }
     }
   }
-  &__search{
+  &__search {
     display: flex;
     align-items: center;
     gap: 2rem;
+
+    @include mobile {
+      flex-direction: column;
+    }
   }
-  &__nav{
+  &__nav {
     display: flex;
-    gap:2rem;
-    &__menu{
+    gap: 2rem;
+    &__menu {
       display: flex;
       list-style-type: none;
-      gap:1rem;
+      gap: 1rem;
       align-items: center;
       font-size: 1.3em;
+    }
+
+    @include mobile {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: getColor('textDark');
+      justify-content: space-evenly;
+      padding: 2rem 0;
     }
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductCardComponent from '../components/cards/product-card.component';
 import { IProduct } from '../models/product';
-
+import './landing.styles.scss';
 interface Props {
   products: IProduct[];
 }
