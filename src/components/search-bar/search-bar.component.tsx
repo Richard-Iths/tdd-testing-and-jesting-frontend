@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { IProduct } from '../../models/product';
 import SearchBarListComponent from './search-bar-list.component';
-
+import "./search-bar.styles.scss";
 export interface Props {
   products: IProduct[];
 }
@@ -19,7 +19,7 @@ const SearchBarComponent: React.FC<Props> = ({ products }) => {
   return (
     <section className="search-bar">
       <input
-        className="search-bar__input"
+        className={`search-bar__input ${searchArr.length > 0 ? 'border-radius-top' : 'border-radius'}`}
         type="text"
         name="search-bar"
         id="search-bar"
@@ -27,7 +27,7 @@ const SearchBarComponent: React.FC<Props> = ({ products }) => {
         data-test="search-input"
         onChange={searchOnChange}
       />
-      {searchArr && <SearchBarListComponent products={searchArr} />}
+      {searchArr.length > 0 && <SearchBarListComponent products={searchArr} />}
     </section>
   );
 };

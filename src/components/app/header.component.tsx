@@ -43,23 +43,35 @@ const HeaderComponent: React.FC<Props> = ({ products }) => {
   return (
     <>
       <header className="app-header">
+       
         <div className="app-header__top">
           <h2 className="heading">T&amp;J AB</h2>
           <nav className="app-header__nav">
-            <i
-              className="uil uil-shopping-cart"
+            <ul className="app-header__nav__menu">
+              <li className="app-header__nav__menu__link">
+                Home
+              </li>
+              <li className="app-header__nav__menu__link">
+                About
+              </li>
+            </ul>
+           <span className="figure figure--circle figure--primary"> <i
+              className="uil uil-shopping-cart icon--medium"
               data-test="cart-icon"
               onClick={() => toggleModal(Modal.CART_MODAL)}
-            ></i>
-            <i className="uil uil-user" data-test="user-icon" onClick={() => toggleModal(Modal.USER_MODAL)}></i>
+            ></i></span>
+           <span className="figure figure--circle figure--accent"><i className="uil uil-user icon--medium" data-test="user-icon" onClick={() => toggleModal(Modal.USER_MODAL)}></i></span>
           </nav>
         </div>
+        
         <div className="app-header__hero">
-          <h1 className="heading--large">
+          <h1 className="heading--extra-large">
             START EXPLORING <br /> YOUR NEW <br /> STUFF TODAY
           </h1>
+          <div className="app-header__search">
           <ExploreImg />
           <SearchBarComponent products={products} />
+          </div>
         </div>
       </header>
       <CartModalComponent {...CartModalState} />

@@ -36,9 +36,22 @@ h2.heading--extra-large {
 }
 
 .figure {
-  min-width: 3.2rem;
-  min-height: 3.2rem;
+  padding: 1rem;
+  display: block;
+  
   background-color: getColor('primaryBackground');
+
+  &--primary{
+    background-color: getColor('primaryColor')
+  }
+
+  &--accent{
+    background-color: getColor('accentColor')
+  }
+}
+
+.icon--medium {
+  font-size: 3.2rem;
 }
 
 .figure--circle {

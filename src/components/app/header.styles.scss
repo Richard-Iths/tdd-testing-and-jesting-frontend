@@ -9,12 +9,14 @@
 
   &__top {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
     padding: 3.2rem;
   }
 
   &__hero {
     padding: 0 3.2rem;
+    justify-content: space-evenly;
 
     display: flex;
     align-items: center;
@@ -22,6 +24,23 @@
     h1 {
       max-width: 14ch;
       line-height: 1.5;
+      color: lightenColor( getColor("primaryColor"),15)
+    }
+  }
+  &__search{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  &__nav{
+    display: flex;
+    gap:2rem;
+    &__menu{
+      display: flex;
+      list-style-type: none;
+      gap:1rem;
+      align-items: center;
+      font-size: 1.3em;
     }
   }
 }

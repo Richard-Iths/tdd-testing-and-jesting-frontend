@@ -1,5 +1,9 @@
 .search-bar {
   &__input {
     padding: 1.6rem 3.2rem;
+    border: none;
+    outline: none;
+    border-radius: 6px 6px 0 0;
+    min-width: 32rem;
   }
 }
