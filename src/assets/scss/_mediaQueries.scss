@@ -2,20 +2,14 @@ $tablet-width: 48em;
 $laptop-width: 57em;
 $desktop-width: 75em;
 
-@mixin mobile {
-  @media (max-width: #{$tablet-width - .1em}) {
-    @content;
-  }
-}
-
 @mixin tablet {
-  @media (min-width: #{$tablet-width}) and (max-width: #{$laptop-width - .1em}) {
+  @media (min-width: #{$tablet-width}) {
     @content;
   }
 }
 
 @mixin laptop {
-  @media (min-width: #{$laptop-width}) and (max-width: #{$desktop-width - .1em}) {
+  @media (min-width: #{$laptop-width}) {
     @content;
   }
 }

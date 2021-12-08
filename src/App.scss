@@ -1,5 +1,6 @@
-#app  {
+.app-wrapper {
   display: grid;
   grid-template-rows: min-content auto;
   min-height: 100vh;
+  margin-bottom: 10rem;
 }

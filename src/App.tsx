@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import LandingPage from './pages/landing.page';
-import './App.scss';
 import { Route, Routes } from 'react-router-dom';
 import { IProduct, ProductResponse, ProductsUrls, bootstrapData } from './models/product';
 import Api from './api/rest.api';
 import HeaderComponent from './components/app/header.component';
 // import { Route, Routes } from "react-router-dom";
+import './App.scss';
 
 function App() {
   // <Route path="about" element={<About />} />
@@ -27,7 +27,7 @@ function App() {
   }, []);
 
   return (
-    <div className="app">
+    <div className="app-wrapper">
       <HeaderComponent products={products} />
       <main>
         <Routes>

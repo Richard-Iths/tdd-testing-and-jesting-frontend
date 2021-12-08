@@ -2,15 +2,11 @@
 
 .products-section {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
   gap: 2rem;
   padding: 1.6rem 3.2rem;
 
-  @include mobile {
-    grid-template-columns: 1fr;
-  }
-
   @include tablet {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }

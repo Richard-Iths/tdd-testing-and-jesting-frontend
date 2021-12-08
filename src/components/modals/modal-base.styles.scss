@@ -1,0 +1,11 @@
+@import '../../assets/scss';
+.modal {
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba($color: getColor('textDark'), $alpha: 0.7);
+  min-height: 100vh;
+  z-index: 100;
+}

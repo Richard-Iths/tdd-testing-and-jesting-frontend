@@ -1,14 +1,14 @@
 @import '../../assets/scss';
 
 .app-header {
-  min-height: 60vh;
+  min-height: 100vh;
   display: grid;
   grid-template-rows: min-content auto;
   background-color: getColor('accentBackground');
   color: getColor('textLight');
 
-  @include mobile {
-    min-height: 100vh;
+  @include laptop {
+    min-height: 60vh;
   }
 
   &__top {
@@ -16,68 +16,69 @@
     justify-content: space-around;
     align-items: center;
     padding: 3.2rem;
-
-    @include mobile {
-      justify-content: space-between;
-      padding: 1.6rem;
-    }
   }
 
   &__hero {
-    padding: 0 3.2rem;
-    justify-content: space-evenly;
-
     display: flex;
-    align-items: center;
+    text-align: center;
+    padding: 1.6rem;
+    flex-direction: column-reverse;
+    justify-content: center;
+    gap: 2rem;
 
     h1 {
-      max-width: 14ch;
-      line-height: 1.5;
+      font-size: 2em;
       color: lightenColor(getColor('primaryColor'), 15);
     }
-
     @include tablet {
+      flex-direction: column;
+      align-items: center;
+
       h1 {
-        display: none;
+        line-height: 1.5;
+        font-size: 2.5em;
+        color: lightenColor(getColor('primaryColor'), 15);
       }
     }
-    @include mobile {
-      flex-direction: column-reverse;
-      text-align: center;
-      padding: 1.6rem;
-      h1 {
-        font-size: 2em;
-      }
+    @include laptop {
+      flex-direction: row;
+      justify-content: space-around;
     }
   }
   &__search {
     display: flex;
     align-items: center;
     gap: 2rem;
+    flex-direction: column;
 
-    @include mobile {
-      flex-direction: column;
+    @include tablet {
+      flex-direction: row;
     }
   }
   &__nav {
+    position: fixed;
     display: flex;
     gap: 2rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: getColor('textDark');
+    justify-content: space-evenly;
+    padding: 2rem 0;
+    z-index: 9999;
+
+    @include tablet {
+      position: relative;
+      display: flex;
+      background-color: transparent;
+    }
+
     &__menu {
       display: flex;
       list-style-type: none;
       gap: 1rem;
       align-items: center;
       font-size: 1.3em;
-    }
-
-    @include mobile {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-color: getColor('textDark');
-      justify-content: space-evenly;
-      padding: 2rem 0;
     }
   }
 }
