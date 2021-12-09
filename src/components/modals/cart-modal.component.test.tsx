@@ -3,13 +3,13 @@ import { render } from '@testing-library/react';
 import CartModalComponent, { Props } from './cart-modal.component';
 import CartCardComponent, { Props as CardProps } from '../cards/cart-card.component';
 import { Modal } from './modals.types';
-import { mount, shallow } from 'enzyme';
+import { mount, shallow, render as renderEnzyme } from 'enzyme';
 import CartContext, { Cart, CartContextProvider } from '../../context/cart.context';
 
 describe('cart-modal.component.tsx', () => {
   const cartProps: Props = {
     closeModal: () => {},
-    visible: false,
+    visible: true,
     name: Modal.CART_MODAL,
   };
 
@@ -41,11 +41,10 @@ describe('cart-modal.component.tsx', () => {
     });
 
     it('should render cart items with total amount', () => {
-      const mockedCart = CartContext.Provider as jest.Mocked<typeof CartContext.Provider>;
-      mount(
+      const wrapper = renderEnzyme(
         <CartContext.Provider
           value={{
-            cart: mockedCart,
+            cart: [{ ...cardProps.product }],
             getCart: () => [],
             addCartItem: (_) => {},
             updateCartItem: (_) => {},
@@ -54,7 +53,18 @@ describe('cart-modal.component.tsx', () => {
           <CartModalComponent {...cartProps} />
         </CartContext.Provider>
       );
-      expect(contextSpy).toHaveBeenCalled();
+      const amount = wrapper.find('[data-test="cart-total-amount"]');
+      console.log(amount.text());
+
+      expect(amount.text()).toBe(`Total amount:${cardProps.product.price * cardProps.product.amount}`);
+    });
+
+    it('should have a checkout button', () => {
+      const wrapper = shallow(<CartModalComponent {...cartProps} />);
+      const button = wrapper.find('[data-test="cart-checkout"]');
+      console.log(button.html());
+
+      expect(button.exists()).toBe(true);
     });
   });
 });
