@@ -31,7 +31,11 @@ describe('search-bar.component.tsx', () => {
           <SearchBarComponent products={items} />
         </BrowserRouter>
       );
+
+      const searchInput = wrapper.find('[data-test="search-input"]');
+      searchInput.simulate('change', { target: { value: 'nam' } });
       const searchBarListComponent = wrapper.find(SearchBarListComponent);
+
       expect(searchBarListComponent.exists()).toBe(true);
     });
   });

@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
-import { IProduct } from '../../models/product';
 import CartContext, { Cart, UpdateType } from '../../context/cart.context';
 
-interface Props {
+export interface Props {
   product: Cart;
 }
 

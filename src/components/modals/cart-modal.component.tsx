@@ -17,7 +17,7 @@ const CartModalComponent: React.FC<Props> = ({ visible, closeModal, name }) => {
             <CartCardComponent product={cartItem} key={cartItem.product_id} />
           ))}
         </div>
-        <div className="cart-modal__footer"></div>
+        <div className="cart-modal__footer" data-test="cart-amount"></div>
       </section>
     </BaseModal>
   );

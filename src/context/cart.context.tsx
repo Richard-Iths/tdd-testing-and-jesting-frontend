@@ -30,7 +30,8 @@ export const CartContextProvider: React.FC = ({ children }) => {
   const addCartItem = (newProduct: IProduct): void => {
     const existingProduct = cart.find((product) => product.product_id === newProduct.product_id);
     if (existingProduct) {
-      addCartItems([...cart, { ...existingProduct, amount: existingProduct.amount + 1 }]);
+      // addCartItems([...cart, { ...existingProduct, amount: existingProduct.amount + 1 }]);
+      existingProduct.amount = existingProduct.amount + 1;
     } else {
       addCartItems([...cart, { ...newProduct, amount: 1 }]);
     }
