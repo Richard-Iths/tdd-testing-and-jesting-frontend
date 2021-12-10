@@ -13,7 +13,7 @@ export enum UpdateType {
 interface Context {
   cart: Cart[];
   addCartItem: (product: IProduct) => void;
-  getCart: () => IProduct[];
+  getCart: () => Cart[];
   updateCartItem: (productId: string, action: UpdateType) => void;
 }
 
@@ -30,13 +30,13 @@ export const CartContextProvider: React.FC = ({ children }) => {
   const addCartItem = (newProduct: IProduct): void => {
     const existingProduct = cart.find((product) => product.product_id === newProduct.product_id);
     if (existingProduct) {
-      // addCartItems([...cart, { ...existingProduct, amount: existingProduct.amount + 1 }]);
       existingProduct.amount = existingProduct.amount + 1;
+      addCartItems([...cart]);
     } else {
       addCartItems([...cart, { ...newProduct, amount: 1 }]);
     }
   };
-  const getCart = (): IProduct[] => [...cart];
+  const getCart = (): Cart[] => [...cart];
 
   const updateCartItem = (productId: string, action: UpdateType) => {
     switch (action) {
@@ -44,6 +44,7 @@ export const CartContextProvider: React.FC = ({ children }) => {
         const existingProduct = cart.find((product) => product.product_id === productId);
         if (existingProduct) {
           existingProduct.amount = existingProduct.amount + 1;
+          addCartItems([...cart]);
         }
         break;
       }
@@ -51,6 +52,7 @@ export const CartContextProvider: React.FC = ({ children }) => {
         const existingProduct = cart.find((product) => product.product_id === productId);
         if (existingProduct && existingProduct.amount - 1 !== 0) {
           existingProduct.amount = existingProduct.amount - 1;
+          addCartItems([...cart]);
         } else {
           addCartItems([...cart.filter((product) => product.product_id !== productId)]);
         }

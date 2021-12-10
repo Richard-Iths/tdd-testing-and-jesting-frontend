@@ -1,4 +1,4 @@
-@import '../../assets/scss';
+@import '../../assets/scss', '../../assets/scss/animations';
 .modal {
   position: fixed;
   bottom: 0;
@@ -7,5 +7,27 @@
   left: 0;
   background-color: rgba($color: getColor('textDark'), $alpha: 0.7);
   min-height: 100vh;
-  z-index: 100;
+  z-index: 99999999;
+  display: grid;
+  place-items: center;
+  grid-template-rows: min-content auto;
+  grid-template-columns: 100vw;
+  @include laptop {
+    grid-template-areas: '. . cta-box' '. . modal';
+    grid-template-columns: 1fr 1fr 80rem;
+  }
+
+  &__cta {
+    background-color: getColor('primaryColor');
+    color: getColor('textLight');
+    padding: 1.6rem;
+    display: flex;
+    justify-content: flex-start;
+    animation-name: slide_left_animation_page_load;
+    animation-duration: 1000ms;
+    min-width: 100%;
+    @include laptop {
+      grid-area: cta-box;
+    }
+  }
 }

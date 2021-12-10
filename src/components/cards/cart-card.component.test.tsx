@@ -1,14 +1,18 @@
 import { render } from '@testing-library/react';
 import { mount } from 'enzyme';
 import React from 'react';
-import { IProduct } from '../../models/product';
+import { Cart } from '../../context/cart.context';
 import CartCardComponent from './cart-card.component';
 
 describe('CartCardComponent', () => {
-  const data: Pick<IProduct, 'img' | 'name' | 'price'> = {
+  const data: Cart = {
     img: 'hej bild',
     name: 'Mattias',
     price: 666,
+    amount: 2,
+    description: 'DADA',
+    product_id: '13131',
+    shortDescription: 'A SHORT DESCRIPTION',
   };
 
   describe('Smoke tests', () => {

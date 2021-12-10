@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { render } from '@testing-library/react';
 import CartModalComponent, { Props } from './cart-modal.component';
 import CartCardComponent, { Props as CardProps } from '../cards/cart-card.component';
 import { Modal } from './modals.types';
-import { mount, shallow, render as renderEnzyme } from 'enzyme';
-import CartContext, { Cart, CartContextProvider } from '../../context/cart.context';
+import { mount, shallow } from 'enzyme';
+import CartContext from '../../context/cart.context';
 
 describe('cart-modal.component.tsx', () => {
   const cartProps: Props = {
@@ -41,11 +41,11 @@ describe('cart-modal.component.tsx', () => {
     });
 
     it('should render cart items with total amount', () => {
-      const wrapper = renderEnzyme(
+      const wrapper = mount(
         <CartContext.Provider
           value={{
             cart: [{ ...cardProps.product }],
-            getCart: () => [],
+            getCart: () => [{ ...cardProps.product }],
             addCartItem: (_) => {},
             updateCartItem: (_) => {},
           }}
@@ -54,16 +54,12 @@ describe('cart-modal.component.tsx', () => {
         </CartContext.Provider>
       );
       const amount = wrapper.find('[data-test="cart-total-amount"]');
-      console.log(amount.text());
-
       expect(amount.text()).toBe(`Total amount:${cardProps.product.price * cardProps.product.amount}`);
     });
 
     it('should have a checkout button', () => {
       const wrapper = shallow(<CartModalComponent {...cartProps} />);
       const button = wrapper.find('[data-test="cart-checkout"]');
-      console.log(button.html());
-
       expect(button.exists()).toBe(true);
     });
   });

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import CartContext, { Cart, UpdateType } from '../../context/cart.context';
+import "./cart-card.styles.scss";
 
 export interface Props {
   product: Cart;
@@ -7,7 +8,6 @@ export interface Props {
 
 const CartCardComponent: React.FC<Props> = ({ product }) => {
   const cartContext = useContext(CartContext);
-
   return (
     <article className="cart-card">
       <div className="cart-card__img" data-test="cart-card--img">
@@ -18,15 +18,17 @@ const CartCardComponent: React.FC<Props> = ({ product }) => {
       </div>
       <div className="cart-card__amount" data-test="cart-card--amount">
         <i
-          className="uil uil-angle-left-b"
+          className="uil uil-angle-left-b icon--cta"
           onClick={() => cartContext.updateCartItem(product.product_id, UpdateType.DECREMENT)}
         ></i>
-        <span className="figure-block">{product.amount}</span>
+        <h5><span className="figure-block">{product.amount}</span></h5>
         <i
-          className="uil uil-angle-right-b"
+          className="uil uil-angle-right-b icon--cta"
           onClick={() => cartContext.updateCartItem(product.product_id, UpdateType.INCREMENT)}
         ></i>
+
       </div>
+        <h5>Amount { product.amount * product.price}</h5>
     </article>
   );
 };

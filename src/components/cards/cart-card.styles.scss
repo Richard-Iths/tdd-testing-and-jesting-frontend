@@ -1,0 +1,42 @@
+@import '../../assets/scss/';
+
+.cart-card {
+  max-height: 15rem;
+  display: flex;
+  background-color: getColor('text-light');
+
+  //   border-bottom: 2px solid getColor('textDark');
+  padding: 1.6rem;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 6px;
+  box-shadow: -2px 0px 5px 0px rgba($color: getColor('textDark'), $alpha: 0.3);
+  @include desktop {
+    align-self: center;
+    min-width: 75%;
+  }
+  &__img {
+    img {
+      max-width: 5rem;
+      max-height: 5rem;
+      min-width: 5rem;
+      min-height: 5rem;
+    }
+  }
+  &__title {
+    flex-grow: 1;
+    text-align: center;
+  }
+  &__amount {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    h5 {
+      font-weight: bold;
+      // margin-top:.3rem;
+    }
+    i {
+      font-size: 1.5em;
+    }
+  }
+}

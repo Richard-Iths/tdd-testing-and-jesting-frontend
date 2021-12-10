@@ -13,12 +13,20 @@ const ModalBaseComponent: React.FC<Props> = ({ children, visible, closeModal, na
     const bodyEl = document.querySelector<HTMLBodyElement>('body');
     bodyEl?.classList.toggle('no-scroll');
   }, [visible]);
+
+  const closeOnOutlineClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const target = e.target as Element;
+    if (target.classList[0] === "modal") {
+      closeModal(name);
+    }
+  }
+
   return (
     <>
       {visible && (
-        <section className="modal" data-test="modal" onClick={() => closeModal(name)}>
+        <section className="modal" data-test="modal" onClick={closeOnOutlineClick}>
           <div className="modal__cta">
-            <i className="uil uil-times-square" onClick={() => closeModal(name)} />
+            <i className="uil uil-times-square icon--medium" onClick={() => closeModal(name)} />
           </div>
           {children}
         </section>

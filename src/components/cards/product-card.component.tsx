@@ -20,7 +20,7 @@ const ProductCardComponent: React.FC<Props> = ({ product }) => {
       data-test="product-card"
     >
       <div className="hide product-card__header" data-test="header-section">
-        <span className="figure figure--circle">
+        <span className="figure figure--circle icon--cta">
           <i className="uil uil-shopping-cart icon--normal" onClick={() => cartContext.addCartItem(product)}></i>
         </span>
       </div>
